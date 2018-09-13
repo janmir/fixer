@@ -26,12 +26,22 @@ type EuroCenterBankXML struct {
 	Cube CubeParent `xml:"Cube"`
 }
 
+type euData struct {
+	Timestamp string `json:"timestamp"`
+	ImageURL  string `json:"img"`
+	History   []struct {
+		From  string  `json:"from"`
+		To    string  `json:"to"`
+		Value float32 `json:"value"`
+	} `json:"history"`
+}
+
 const (
 	_url = "http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml"
 )
 
-//Convert interface struct
-type Convert struct {
+//Fx interface struct
+type Fx struct {
 }
 
 func init() {
@@ -41,14 +51,24 @@ func init() {
 }
 
 //Convert converts from to values
-func (eu Convert) Convert(from, to string) (float32, error) {
+func (eu Fx) Convert(from, to string) (float32, error) {
 	//if no data available
 	//generate new data
 
 	return 0.0, nil
 }
 
-func (eu Convert) generate() error {
+//Trend returns history or trend graph
+func (eu Fx) Trend(from, to string) (string, error) {
+	return "", nil
+}
+
+//Rate for exchange
+func (eu Fx) Rate(from, to string) (float32, error) {
+	return 0.0, nil
+}
+
+func (eu Fx) generate() error {
 	//Generate json file
 	//Generate svg -> png file
 
